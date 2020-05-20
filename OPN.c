@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
-#define SIZE 20
+#include <string.h>
+#define SIZE 128
 
 struct stack{
 	int mas[SIZE];
@@ -31,16 +31,17 @@ int pop(struct stack *st){
 int main(){
 	struct stack opn;
 	stack_init(&opn);
-	char* val = (char*)malloc(10);
+	char buf[SIZE];
 	int answer = 0;
-	scanf("%s", &val);
-	printf("%lu\n", sizeof(val));
-	for(int i = 0; i < sizeof(val); i++){
-		if(val[i] > '0' && val[i] < '9'){
-			push(&opn, val[i]);
+	printf("Enter an expression: ");
+	scanf("%s", buf);
+	for(int i = 0; i < strlen(buf); i++){
+		if(buf[i] > '0' && buf[i] < '9'){
+			push(&opn, buf[i] - '0');
+			printf("%d\n", buf[i] - '0');
 		}
-		else if(opn.cnt > 1){
-			switch(val[i]){
+		else{
+			switch(buf[i]){
 				case '*':
 				answer = pop(&opn) * pop(&opn);
 				push(&opn, answer);
@@ -59,13 +60,6 @@ int main(){
 				break;
 			}
 		}
-		else{
-			return printf("Invalid value\n");
-		}
 	}
-	printf("Obtained value: %d\n", answer);
-	// push(&gg, 7);
-	// push(&gg, 8);
-	// printf("%d", pop(&gg));
-	// printf("%d", pop(&gg));
+	return printf("Obtained value: %d\n", answer);
 }
