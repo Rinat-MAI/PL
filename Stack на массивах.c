@@ -6,21 +6,21 @@ struct stack{
 	int cnt;
 };
 void stack_init(struct stack *st){
-	st -> cnt = 0;
+	st->cnt = 0;
 }
 void push(struct stack *st, int val){
-	if(st -> cnt < SIZE){
-		st -> mas[st -> cnt] = val;
-		st -> cnt++;
+	if(st->cnt < SIZE){
+		st->mas[st->cnt] = val;
+		st->cnt++;
 	}
 	else{
 		printf("Стек переполнен\n");
 	}
 }
 int pop(struct stack *st){
-	if(st -> cnt > 0){
-		st -> cnt--;
-		return st->mas[st -> cnt];
+	if(st->cnt > 0){
+		st->cnt--;
+		return st->mas[st->cnt];
 	}
 	else{
 		printf("Пустой стек\n");
