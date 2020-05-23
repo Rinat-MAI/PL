@@ -94,7 +94,12 @@ void bstree_delete(struct bstree *tree, int key){
 			}
 		}
 		if(tree->left == NULL && tree->right == NULL){ // 1 случай (у удалаяемого узла нет ветвей)
-			free(tree);
+			if(parent->left == tree){
+				parent->left = NULL;
+			}
+			else if(parent->right == tree){
+				parent->right = NULL;
+			}
 		}
 		else if(tree->left != NULL && tree->right != NULL){ // 3 случай (у удаляемого узла есть две ветви)
 			struct bstree *parent2 = tree->right;
