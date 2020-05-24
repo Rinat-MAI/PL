@@ -7,10 +7,11 @@ void swap(int *mas, int i, int j){
 	mas[j] = k;
 }
 
-int partition(int *mas, int n){
+int partition(int *mas, int s, int n){
 	int pivot = mas[n / 2];
 	int i, j;
 	j = n;
+	i = s;
 	while(i != j){
 		if(mas[i] < pivot){
 			i++;
@@ -23,11 +24,11 @@ int partition(int *mas, int n){
 	return i;
 }
 
-void qsort(int *mas, int n){
-	int k = partition(mas, n);
+void qsort(int *mas, int s, int n){
+	int k = partition(mas, s, n);
 	if(k >= 1){
-		qsort(mas, k);
-		qsort(mas, k + 1);
+		qsort(mas, s, k);
+		qsort(mas, k + 1, n);
 	}	
 }
 
